@@ -5,29 +5,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+public class Review {
 
-public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int p_id;
-	private String name;
-	private String thumbnail;
-	@ManyToOne
-	@JoinColumn(name="cat_id", referencedColumnName="category_id")
-	private Category category;
-	private double price;
-	private String details;
-	private int qty;
-	
+	private int r_id;
+	@OneToOne
+	@JoinColumn(name="p_id", referencedColumnName="p_id")
+	private Product product;
+	private int c_id;
+	private String r_desc;
+	private int R_stars;
 }
